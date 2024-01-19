@@ -24,6 +24,8 @@ class Song(db.Model):
     title = db.Column(db.String(50), nullable=False)
     artist = db.Column(db.String(50), nullable=False)
 
+    playlists = db.relationship('Playlist', backref='songs')
+
 
 class PlaylistSong(db.Model):
     """Mapping of a playlist to a song."""
@@ -40,3 +42,6 @@ def connect_db(app):
 
     db.app = app
     db.init_app(app)
+
+
+
