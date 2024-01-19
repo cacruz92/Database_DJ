@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 connect_db(app)
 
 with app.app_context():
-        db.drop_all()
+        # db.drop_all()
         db.create_all()
 
 app.config['SECRET_KEY'] = "I'LL NEVER TELL!!"
@@ -60,7 +60,20 @@ def add_playlist():
     - if valid: add playlist to SQLA and redirect to list-of-playlists
     """
 
-    # ADD THE NECESSARY CODE HERE FOR THIS ROUTE TO WORK
+    form = PlaylistForm()
+
+    if form.validate_on_submit():
+         name = form.name.data
+         description = form.description.data
+
+         playlist = Playlist(name=name, description=description)
+
+         db.session.add(playlist)
+         db.session.commit()
+
+         return redirect('/playlists')
+    else:
+         return render_template('new_playlist.html', form=form)
 
 
 ##############################################################################

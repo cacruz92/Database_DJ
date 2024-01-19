@@ -8,16 +8,16 @@ from flask_wtf import FlaskForm
 class PlaylistForm(FlaskForm):
     """Form for adding playlists."""
 
-    name = StringField('Name', validators=[InputRequired(), Length(min=1, max=50)])
-    description = StringField('Name', validators=[InputRequired(), Length(min=1, max=250)])
+    name = StringField('Name:', validators=[InputRequired(), Length(min=1, max=50)])
+    description = StringField('Description:', validators=[InputRequired(), Length(min=1, max=250)])
     
 
 
 class SongForm(FlaskForm):
     """Form for adding songs."""
 
-    title = StringField('Name', validators=[InputRequired(), Length(min=1, max=50)])
-    artist = StringField('Name', validators=[InputRequired(), Length(min=1, max=50)])
+    title = StringField('Title', validators=[InputRequired(), Length(min=1, max=50)])
+    artist = StringField('Artist', validators=[InputRequired(), Length(min=1, max=50)])
     
 
 
